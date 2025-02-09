@@ -220,6 +220,7 @@
                                         <option>Mechanical Engineering</option>
                                         <option>Petroleum Refinery</option>
                                         <option>Power &amp; Energy</option>
+                                        <option>Other</option>
                                     </select>
                                 </div>
                                 <div class="fullwidth">
@@ -242,7 +243,7 @@
                                 $("#submit-form").submit((e)=>{
                                 e.preventDefault()
                                 $.ajax({
-                                url:"https://script.google.com/macros/s/AKfycbya9kWASC_aai8wKnOk5J9cCiQwcYeacma74njdkfKA0fcAlR2OpcTQl1PPxkjxhb6ncw/exec",
+                                url:"https://script.google.com/macros/s/AKfycbybVxep0Ym7GJgqi2xKnQadjqfQIJLWdCuci71BLK0_5RmVMjib0KOanQO5e8kQS5tmGA/exec",
                                 data:$("#submit-form").serialize(),
                                 method:"post",
                                 success:function (response){

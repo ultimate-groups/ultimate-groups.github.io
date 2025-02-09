@@ -27,6 +27,25 @@
     <link href="assets/css/jquery.fancybox.css" rel="stylesheet">
     <link href="assets/css/odometer-theme-default.css" rel="stylesheet">
     <link href="assets/sass/style.css" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        var isNS = (navigator.appName == "PN") ? 1 : 0;
+        if(navigator.appName == "PN") document.captureEvents(Event.MOUSEDOWN||Event.MOUSEUP);
+        function mischandler(){
+        return false;
+        }
+        function mousehandler(e){
+        var myevent = (isNS) ? e : event;
+        var eventbutton = (isNS) ? myevent.which : myevent.button;
+        if((eventbutton==2)||(eventbutton==3)) return false;
+        }
+        document.oncontextmenu = mischandler;
+        document.onmousedown = mousehandler;
+        document.onmouseup = mousehandler;
+        </script>
+
+
 </head>
 
 <body>
@@ -182,18 +201,18 @@
                             <p>We’re here to help! Whether you need more information about our services, want to discuss a project, or have any inquiries, feel free to reach out.</p>
                         </div>
                         <div class="wpo-contact-form-area">
-                            <form method="post" class="contact-validation-active" id="contact-form-main">
+                            <form method="" class="contact-validation-active" id="submit-form">
                                 <div>
                                     <input type="text" class="form-control" name="name" id="name"
-                                        placeholder="Your Name*">
+                                        placeholder="Your Name*" required >
                                 </div>
                                 <div>
                                     <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email*">
+                                        placeholder="Your Email*" required >
                                 </div>
                                 <div>
                                     <input type="number" class="form-control" name="number" id="number"
-                                        placeholder="Phone Number">
+                                        placeholder="Phone Number" required >
                                 </div>
                                 <div>
                                     <select name="service" class="form-control">
@@ -218,6 +237,27 @@
                                     <div id="error"> Error occurred while sending email. Please try again later. </div>
                                 </div>
                             </form>
+
+                            <script>
+                                $("#submit-form").submit((e)=>{
+                                e.preventDefault()
+                                $.ajax({
+                                url:"https://script.google.com/macros/s/AKfycbya9kWASC_aai8wKnOk5J9cCiQwcYeacma74njdkfKA0fcAlR2OpcTQl1PPxkjxhb6ncw/exec",
+                                data:$("#submit-form").serialize(),
+                                method:"post",
+                                success:function (response){
+                                alert("Thank You for Contacting Us!. our sales team will contact you soon. Thank you!")
+                                window.location.reload()
+                                //window.location.href="https://google.com"
+                                },
+                                error:function (err){
+                                alert("Something Error")
+                                
+                                }
+                                })
+                                })
+                                </script>
+
                         </div>
                     </div>
                 </div>
